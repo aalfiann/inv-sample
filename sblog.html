@@ -82,35 +82,64 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>CI-VPS2USA - db.csw-xpediter.com (06-12-2018 - 05-01-2019)<br />
-Operating System: CentOS 7.0.1406 64bit</td>
-                                <td class="text-center">Rp. 199.000,00</td>
+                                <td>DB_Server - db.sblog.co.id <span class="periode"></span><br />
+                                    Spec: <br>
+                                    + CentOS 7.0.1406 64bit<br>
+                                    + Ram 4Gb DDR4<br>
+                                    + SSD NVMe 100Gb<br>
+                                    + 4 Core 3.5GHz
+                                </td>
+                                <td class="text-center">Rp. 649.000,00</td>
                             </tr>
                             <tr>
-                                <td>CI-VPS2USA - node1.csw-xpediter.com (06-12-2018 - 05-01-2019)<br />
-Operating System: Ubuntu Server 16.04.1 64bit</td>
-                                <td class="text-center">Rp. 199.000,00</td>
+                                <td>API_Server - api.sblog.co.id <span class="periode"></span><br />
+                                    Spec: <br>
+                                    + CentOS 7.0.1406 64bit<br>
+                                    + Ram 2Gb DDR4<br>
+                                    + SSD NVMe 20Gb<br>
+                                    + 4 Core 3.5GHz
+                                </td>
+                                <td class="text-center">Rp. 459.000,00</td>
                             </tr>
                             <tr>
-                                <td>CI-VPS2USA - node2.csw-xpediter.com (06-12-2018 - 05-01-2019)<br />
-Operating System: Ubuntu Server 16.04.1 64bit</td>
-                                <td class="text-center">Rp. 199.000,00</td>
+                                <td>Web_Server - web.sblog.co.id <span class="periode"></span><br />
+                                    Spec: <br>
+                                    + CentOS 7.0.1406 64bit<br>
+                                    + Ram 2Gb DDR4<br>
+                                    + SSD NVMe 20Gb<br>
+                                    + 2 Core 3.5GHz
+                                </td>
+                                <td class="text-center">Rp. 259.000,00</td>
                             </tr>
                             <tr>
-                                <td>CI-VPS2USA - server.csw-xpediter.com (06-12-2018 - 05-01-2019)<br />
-Operating System: Ubuntu Server 16.04.1 64bit</td>
-                                <td class="text-center">Rp. 199.000,00</td>
+                                <td>Static_Master - s1.sblog.co.id <span class="periode"></span><br />
+                                    Spec: <br>
+                                    + CentOS 7.0.1406 64bit<br>
+                                    + Ram 2Gb DDR4<br>
+                                    + SSD NVMe 40Gb<br>
+                                    + 2 Core 3.5GHz
+                                </td>
+                                <td class="text-center">Rp. 339.000,00</td>
                             </tr>
                             <tr>
-                                <td>Domain Registration - csw-xpediter.com - 1 Year/s (06-12-2018 - 05-12-2019)<br />
+                                <td>Static_Node - s2.sblog.co.id <span class="periode"></span><br />
+                                    Spec: <br>
+                                    + CentOS 7.0.1406 64bit<br>
+                                    + Ram 2Gb DDR4<br>
+                                    + SSD NVMe 40Gb<br>
+                                    + 2 Core 3.5GHz
+                                </td>
+                                <td class="text-center">Rp. 339.000,00</td>
+                            </tr>
+                            <tr>
+                                <td>Domain Registration - sblog.co.id - 1 Year/s <span id="periode_yearly"></span><br />
                                     + DNS Management<br />
-                                    + Email Forwarding<br />
-                                    + ID Protection</td>
-                                <td class="text-center">Rp. 235.000,00</td>
+                                    + Email Forwarding</td>
+                                <td class="text-center">Rp. 325.000,00</td>
                             </tr>
                             <tr>
                                 <td class="total-row text-right"><strong>Sub Total</strong></td>
-                                <td class="total-row text-center">Rp. 1.031.000,00</td>
+                                <td class="total-row text-center">Rp. 2.370.000,00</td>
                             </tr>
                             <tr>
                                 <td class="total-row text-right"><strong>Credit</strong></td>
@@ -118,7 +147,7 @@ Operating System: Ubuntu Server 16.04.1 64bit</td>
                             </tr>
                                 <tr>
                                     <td class="total-row text-right"><strong>Total</strong></td>
-                                    <td class="total-row text-center">Rp. 1.031.000,00</td>
+                                    <td class="total-row text-center">Rp. 2.370.000,00</td>
                                 </tr>
                         </tbody>
                     </table>
@@ -143,22 +172,37 @@ Operating System: Ubuntu Server 16.04.1 64bit</td>
                 date:("0" + dt.getDate()).slice(-2)
             }
         }
+        function daysInMonth (month, year) {
+            return new Date(year, month, 0).getDate();
+        }
         function autoNumber() {
-            return Date.now().toString().substr(4);
+            return jsonDate().year.toString().substr(2)+jsonDate().month+Date.now().toString().substr(8);
+        }
+        function nextYear() {
+            var oneYearFromNow = new Date();
+            return oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
         }
         var no_invoice = autoNumber(); 
-        var date_start = '21';
+        var date_start = '23'; // date start should be min 2
         var dt = new Date(jsonDate().year+'-'+jsonDate().month+'-'+date_start);
-        var duedate_end = jsonDate(dt.getTime() + 12096e5); // add 14 days
+        var duedate_end = jsonDate(dt.getTime() + (1000*60*60*24*3)); // add 3 days
+        var total_date = daysInMonth((new Date().getMonth()+1),new Date().getFullYear());
+        var period_end = jsonDate(dt.getTime() + (1000*60*60*24*(total_date-1))); // add full days per month
         var inv_date_start = date_start+'-'+jsonDate().month+'-'+jsonDate().year;
         var inv_date_end = duedate_end.date+'-'+duedate_end.month+'-'+duedate_end.year;
-        
+        var periode_yearly = '('+inv_date_start+' - '+(date_start-1)+'-'+jsonDate().month+'-'+(jsonDate().year+1)+')'; // add 1 year
+        var periode_end = period_end.date+'-'+period_end.month+'-'+period_end.year;
         document.title = 'javelinee - Invoice #'+no_invoice;
         document.getElementById('invoice_date').innerHTML = inv_date_start;
         document.getElementById('invoice_duedate').innerHTML = inv_date_end;
+        document.getElementById('periode_yearly').innerHTML = periode_yearly;
         var no_inv = document.getElementsByClassName('no_invoice');
         for(var i=0;i<no_inv.length;i++) {
             no_inv[i].innerHTML = no_invoice;
+        }
+        var range_periode = document.getElementsByClassName('periode');
+        for(var x=0;x<range_periode.length;x++) {
+            range_periode[x].innerHTML = '('+inv_date_start+' - '+periode_end+')';
         }
     </script>
 </body>
