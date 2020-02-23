@@ -132,14 +132,8 @@
                                 <td class="text-center">Rp. 339.000,00</td>
                             </tr>
                             <tr>
-                                <td>Domain Registration - sblog.co.id - 1 Year/s <span id="periode_yearly"></span><br />
-                                    + DNS Management<br />
-                                    + Email Forwarding</td>
-                                <td class="text-center">Rp. 325.000,00</td>
-                            </tr>
-                            <tr>
                                 <td class="total-row text-right"><strong>Sub Total</strong></td>
-                                <td class="total-row text-center">Rp. 2.370.000,00</td>
+                                <td class="total-row text-center">Rp. 2.045.000,00</td>
                             </tr>
                             <tr>
                                 <td class="total-row text-right"><strong>Credit</strong></td>
@@ -147,7 +141,7 @@
                             </tr>
                                 <tr>
                                     <td class="total-row text-right"><strong>Total</strong></td>
-                                    <td class="total-row text-center">Rp. 2.370.000,00</td>
+                                    <td class="total-row text-center">Rp. 2.045.000,00</td>
                                 </tr>
                         </tbody>
                     </table>
@@ -190,12 +184,12 @@
         var period_end = jsonDate(dt.getTime() + (1000*60*60*24*(total_date-1))); // add full days per month
         var inv_date_start = date_start+'-'+jsonDate().month+'-'+jsonDate().year;
         var inv_date_end = duedate_end.date+'-'+duedate_end.month+'-'+duedate_end.year;
-        var periode_yearly = '('+inv_date_start+' - '+(date_start-1)+'-'+jsonDate().month+'-'+(jsonDate().year+1)+')'; // add 1 year
+        // var periode_yearly = '('+inv_date_start+' - '+(date_start-1)+'-'+jsonDate().month+'-'+(jsonDate().year+1)+')'; // add 1 year
         var periode_end = period_end.date+'-'+period_end.month+'-'+period_end.year;
         document.title = 'javelinee - Invoice #'+no_invoice;
         document.getElementById('invoice_date').innerHTML = inv_date_start;
         document.getElementById('invoice_duedate').innerHTML = inv_date_end;
-        document.getElementById('periode_yearly').innerHTML = periode_yearly;
+        // document.getElementById('periode_yearly').innerHTML = periode_yearly;
         var no_inv = document.getElementsByClassName('no_invoice');
         for(var i=0;i<no_inv.length;i++) {
             no_inv[i].innerHTML = no_invoice;
