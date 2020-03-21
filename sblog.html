@@ -162,9 +162,9 @@
         function jsonDate(setDate) {
             var dt = null;
             if (setDate === undefined) {
-                var dt = new Date();
+                dt = new Date();
             } else {
-                var dt = new Date(setDate);
+                dt = new Date(setDate);
             }
             return {
                 year:dt.getFullYear(),
@@ -193,7 +193,8 @@
         var periode_yearly = '('+inv_date_start+' - '+(date_start-1)+'-'+jsonDate().month+'-'+(jsonDate().year+1)+')'; // add 1 year
         var periode_end = period_end.date+'-'+period_end.month+'-'+period_end.year;
         document.title = 'javelinee - Invoice #'+no_invoice;
-        document.getElementById('invoice_date').innerHTML = inv_date_start;
+        var datenow = jsonDate();
+        document.getElementById('invoice_date').innerHTML = datenow.date+'-'+datenow.month+'-'+datenow.year;
         document.getElementById('invoice_duedate').innerHTML = inv_date_end;
         document.getElementById('periode_yearly').innerHTML = periode_yearly;
         var no_inv = document.getElementsByClassName('no_invoice');
